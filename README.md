@@ -2,7 +2,7 @@
 
 Costruisco software full-stack — backend fintech, tooling per agenti AI, sistemi a basso livello — spesso con assistenza AI pesante nel processo. Non nascondo questo fatto: qui sotto trovi solo progetti dove test reali e CI reale dimostrano che il codice funziona, non descrizioni che lo dichiarano e basta.
 
-Il resto del mio profilo contiene molti altri progetti personali/sperimentali, a vari stadi di completezza — questi quattro sono quelli su cui ho investito per portarli a uno standard verificabile.
+Il resto del mio profilo contiene molti altri progetti personali/sperimentali, a vari stadi di completezza — questi sei sono quelli su cui ho investito per portarli a uno standard verificabile.
 
 ---
 
@@ -33,6 +33,21 @@ Fork di Redis in C con motore di storage custom, moduli caricabili (vector searc
 - **~443 test reali** verificati (tag `-slow -cluster`), 0 fallimenti, CI verde
 - Benchmark reale contro Redis 8.0.1 stock: **parità (~100%) senza pipelining**; sotto pipelining profondo un gap reale rimane (57-64% su SET, 70-82% su GET a seconda dell'hardware) — dichiarato onestamente nel README con un'issue GitHub dedicata, non nascosto
 - Ha trovato e corretto un bug reale (8 thread "worker" in busy-spin permanente, ~350% CPU anche a server inattivo, zero chiamanti nel codebase) — la vecchia misura falsata da questo bug resta nel README, in una sezione dedicata, invece di essere cancellata
+
+#### 💻 [claude-local-studio](https://github.com/lobbenedesign/claude-local-studio)
+Web Studio locale per Claude Code: 24 provider LLM cloud + Ollama, repo map con AST reale (TypeScript Compiler API + tree-sitter), diff-apply reale su file, ensemble multi-modello.
+
+- Da un monolite (`server.ts`, 4.721 righe) a 20 moduli in `src/`, verificato con `tsc --noEmit` + `bun build` a ogni singolo passo di estrazione — non solo alla fine
+- **9 test reali** (server vero, richieste HTTP vere) + CI su GitHub Actions verde
+- Autenticazione locale (token + cookie) verificata dal vivo: 401 senza token, 401 con token sbagliato, redirect+cookie con token corretto
+- Packaging reale: `.app`/`.dmg` per macOS via `bun build --compile`, verificato lanciando il binario compilato fuori dalla cartella del repository
+
+#### ⚙️ [nexus-local-engine](https://github.com/lobbenedesign/nexus-local-engine)
+Router locale multi-engine per LLM (Ollama verificato, altri runtime rilevati onestamente se assenti), gestione modelli, cache risposte, routing per complessità.
+
+- **13 test reali** + CI verde
+- Autenticazione locale aggiunta (non c'era): senza, chiunque raggiungesse la porta poteva cancellare modelli Ollama installati o avviare download arbitrari
+- Packaging `.app`/`.dmg` per macOS: durante la preparazione ho trovato un bug reale nella risoluzione dei path in un binario compilato (scriveva silenziosamente i propri file di configurazione dentro la cartella sorgente del progetto invece che accanto a sé) — corretto e riverificato lanciando il binario al di fuori del repository
 
 ---
 
