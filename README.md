@@ -2,7 +2,7 @@
 
 Costruisco software full-stack — backend fintech, tooling per agenti AI, sistemi a basso livello — spesso con assistenza AI pesante nel processo. Non nascondo questo fatto: qui sotto trovi solo progetti dove test reali e CI reale dimostrano che il codice funziona, non descrizioni che lo dichiarano e basta.
 
-Il resto del mio profilo contiene molti altri progetti personali/sperimentali, a vari stadi di completezza — questi tre sono quelli su cui ho investito per portarli a uno standard verificabile.
+Il resto del mio profilo contiene molti altri progetti personali/sperimentali, a vari stadi di completezza — questi quattro sono quelli su cui ho investito per portarli a uno standard verificabile.
 
 ---
 
@@ -27,6 +27,13 @@ Diagnosi bug da stack trace reale o issue in linguaggio naturale, patch tramite 
 - Il loop agentico di retry è onesto: se una patch non risolve il bug entro il budget di tentativi, dichiara fallimento invece di simulare un successo
 - Nessuna dipendenza da servizi live (Ollama, GitHub API) nei test automatizzati — tutto verificabile da chiunque cloni il repo
 
+#### ⚡ [nexcache-VERAM3.3](https://github.com/lobbenedesign/nexcache-VERAM3.3)
+Fork di Redis in C con motore di storage custom, moduli caricabili (vector search HNSW, CRDT, timeseries) e probe hardware runtime per SVE2/AVX.
+
+- **~443 test reali** verificati (tag `-slow -cluster`), 0 fallimenti, CI verde
+- Benchmark reale contro Redis 8.0.1 stock: **parità (~100%) senza pipelining**; sotto pipelining profondo un gap reale rimane (57-64% su SET, 70-82% su GET a seconda dell'hardware) — dichiarato onestamente nel README con un'issue GitHub dedicata, non nascosto
+- Ha trovato e corretto un bug reale (8 thread "worker" in busy-spin permanente, ~350% CPU anche a server inattivo, zero chiamanti nel codebase) — la vecchia misura falsata da questo bug resta nel README, in una sezione dedicata, invece di essere cancellata
+
 ---
 
-*Tutti i numeri sopra sono stati verificati eseguendo realmente le rispettive test suite, non riportati dai README dei progetti senza controllo.*
+*Tutti i numeri sopra sono stati verificati eseguendo realmente le rispettive test suite (o, per nexcache-VERAM3.3, anche un benchmark indipendente su hardware diverso da quello del README), non riportati dai README dei progetti senza controllo.*
