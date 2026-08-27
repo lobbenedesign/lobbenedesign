@@ -2,7 +2,7 @@
 
 Costruisco software full-stack — backend fintech, tooling per agenti AI, sistemi a basso livello — spesso con assistenza AI pesante nel processo. Non nascondo questo fatto: qui sotto trovi solo progetti dove test reali e CI reale dimostrano che il codice funziona, non descrizioni che lo dichiarano e basta.
 
-Il resto del mio profilo contiene molti altri progetti personali/sperimentali, a vari stadi di completezza — questi sei sono quelli su cui ho investito per portarli a uno standard verificabile.
+Il resto del mio profilo contiene molti altri progetti personali/sperimentali, a vari stadi di completezza — questi sono quelli su cui ho investito per portarli a uno standard verificabile.
 
 ---
 
@@ -48,6 +48,25 @@ Router locale multi-engine per LLM (Ollama verificato, altri runtime rilevati on
 - **13 test reali** + CI verde
 - Autenticazione locale aggiunta (non c'era): senza, chiunque raggiungesse la porta poteva cancellare modelli Ollama installati o avviare download arbitrari
 - Packaging `.app`/`.dmg` per macOS: durante la preparazione ho trovato un bug reale nella risoluzione dei path in un binario compilato (scriveva silenziosamente i propri file di configurazione dentro la cartella sorgente del progetto invece che accanto a sé) — corretto e riverificato lanciando il binario al di fuori del repository
+
+#### 📄 [document-intelligence-rag](https://github.com/lobbenedesign/document-intelligence-rag)
+RAG su documenti bancari con citazione obbligatoria e rifiuto esplicito quando la risposta non è supportata dai documenti.
+
+- **60 test reali**, 97.15% di copertura, CI verde
+- Progettato per non rispondere "a caso": ogni risposta cita la fonte o dichiara esplicitamente di non saperlo
+
+#### 💬 [transaction-intelligence-agent](https://github.com/lobbenedesign/transaction-intelligence-agent)
+Agente LLM con tool-calling per analisi transazionale conversazionale.
+
+- **63 test reali**, 96% di copertura, CI verde
+- Verificato dal vivo con tool-calling reale su Ollama locale (non solo test unitari mockati)
+
+#### 🏖️ [beach-manager-app](https://github.com/lobbenedesign/beach-manager-app) · [beach-booking-app](https://github.com/lobbenedesign/beach-booking-app) · [beach-manager-electron](https://github.com/lobbenedesign/beach-manager-electron)
+Piattaforma di prenotazione per stabilimenti balneari, nata da un'esperienza professionale reale (Cocobuk) — tre app distinte per tre pubblici: gestionale web per l'operatore, app cliente per la prenotazione, client desktop Electron per lo staff.
+
+- **64 + 50 + 29 = 143 test reali**, tutti passanti, CI verde su tutti e tre i repo
+- beach-booking-app e beach-manager-app erano stati pubblicati per errore come repository identici — differenziati sul serio: l'uno lato cliente, l'altro lato gestore, non solo rinominati
+- Bug reali trovati e corretti durante il lavoro di verifica: test flaky legati alla data corrente, dipendenze CI rotte, non funzionalità applicativa
 
 ---
 
