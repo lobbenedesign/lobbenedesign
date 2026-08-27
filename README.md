@@ -68,6 +68,12 @@ Piattaforma di prenotazione per stabilimenti balneari, nata da un'esperienza pro
 - beach-booking-app e beach-manager-app erano stati pubblicati per errore come repository identici — differenziati sul serio: l'uno lato cliente, l'altro lato gestore, non solo rinominati
 - Bug reali trovati e corretti durante il lavoro di verifica: test flaky legati alla data corrente, dipendenze CI rotte, non funzionalità applicativa
 
+#### 🏄 [surf-cad-electron](https://github.com/lobbenedesign/surf-cad-electron)
+App desktop React/Three.js/Electron per il design e la modellazione 3D di tavole da surf: editor 2D completo, loft 3D live, modulo pinne, export STL/DXF/G-code.
+
+- **31 test reali** (geometria Bezier/Catmull-Rom, fit least-squares di curve digitalizzate, calcolo peso tavola) + CI verde
+- **8 bug reali di reattività React trovati e corretti** (`react-hooks/refs`): due erano solo tecnicismi del linter (assegnare l'ultimo valore a un ref nel corpo del render, spostato in un `useEffect`), ma due erano bug funzionali veri — lo stile del cursore durante il drag (editor design, mappa pinne) leggeva un ref direttamente nel render, che non pianifica un re-render, quindi il cursore "grabbing" non si aggiornava in modo affidabile all'inizio/fine del trascinamento
+
 ---
 
 *Tutti i numeri sopra sono stati verificati eseguendo realmente le rispettive test suite (o, per nexcache-VERAM3.3, anche un benchmark indipendente su hardware diverso da quello del README), non riportati dai README dei progetti senza controllo.*
